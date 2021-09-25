@@ -29,22 +29,16 @@ var oldCollection = JSON.parse(JSON.stringify(collection));
 function updateRecords(object, id, prop, value) {
     // Only change code below this line
     if (prop !== "tracks" && value !== "") {
-        object[id].artist = value;
-        return object;
-      }
-      if (prop === "tracks" && !object[id].tracks) {
-        var tracksOfArtist = [];
-        object[id].tracks = [...tracksOfArtist, value];
-        return object;
-      }
-      if (prop === "tracks" && value !== "") {
-        object[id].tracks = [...object[id].tracks, value];
-        return object;
-      }
-      if (value === "") {
-        delete object[id].prop;
-        return object;
-      }
+        object[id][prop] = value;
+    } else if (prop === "tracks" && !object[id].tracks) {
+        object[id].tracks = [];
+        object[id].tracks.push(value);
+    } else if (prop === "tracks" && value !== "") {
+        object[id].tracks.push(value);
+    } else if (value === "") {
+        delete object[id][prop];
+    }
+    return object;
     // Only change code above this line
 }
 
