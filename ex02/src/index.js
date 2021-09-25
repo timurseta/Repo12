@@ -5,7 +5,7 @@ function myCounter(n) {
     } else {
         const arr = myCounter(n-1);
         arr.unshift(n);
-        return arr
+        return arr;
     }
 }
 // Only change code above this line
